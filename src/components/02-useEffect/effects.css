@@ -1,0 +1,13 @@
+body{
+    padding:70px;
+}
+
+input{
+    margin: 20px 0px 20px 0px;
+}
+.card-contact{
+    background-color: rgb(219, 149, 56);
+}
+.btn-submit{
+    margin: 20px 35%;
+}
