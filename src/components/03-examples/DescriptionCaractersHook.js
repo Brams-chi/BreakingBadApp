@@ -1,14 +1,15 @@
 import React from 'react';
-import { useCounter } from '../../hooks/useCounter';
+//import { useCounter } from '../../hooks/useCounter';
 import { useFetch } from '../../hooks/useFetch';
 import '../02-useEffect/effects.css'
 
-export const DescriptionCaractersHook = () => {
-    const {counter,increment,decrement} = useCounter(1);
+export const DescriptionCaractersHook = ({counter}) => {
+    console.log(counter);
     const { loading , data} = useFetch (`https://www.breakingbadapi.com/api/characters/${counter}`);
     const {name,nickname,occupation,status,img,appearance,category,portrayed} = !!data && data[0];
     const listOcupations = !!occupation && ((occupation.length >0) ? occupation.map( (value,key) => (key>0) ?  ', ' + value : ' ' + value ) : 'No hay ocupaciones');
-    const listTemporadas = !!appearance && ((appearance.length >0) ? appearance.map( (value,key) => (key>0) ?  ', ' + value : ' ' + value ) : 'No hay ocupaciones');
+    const listTemporadas = !!appearance && ((appearance.length >0) ? appearance.map( (value,key) => (key>0) ?  ', ' + value : ' ' + value ) : 'No existe');
+    
     return (
         <div className = "content-card-info">
             <h1>Character information.</h1>
@@ -61,23 +62,7 @@ export const DescriptionCaractersHook = () => {
                                     </footer>
                                 </div>
                             </div> 
-                            {
-                                (counter>1) 
-                                ?
-                                    (<button 
-                                        onClick = {decrement}
-                                        className = "btn btn-light btn-quote"
-                                    
-                                    >Last</button>)
-                                :
-                                ''
-                                
-                            }
-                            <button 
-                                onClick = {increment}
-                                className = "btn btn-info btn-quote"
                             
-                            >Next</button>
                          
                         </div>
                     )
